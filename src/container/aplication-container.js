@@ -40,18 +40,8 @@ class ApplicationContainer extends Component {
         });
 
    
-
-        //https://www.youtube.com/watch?v=pP7quzFmWBY&t=556s&ab_channel=Firebase
     }
 
-    getDatas(){
-
-        return this.state.data.map(
-
-            (element)=>(<label>{element}</label>)
-
-        )
-    }
 
     componentDidMount() {
 
@@ -77,7 +67,7 @@ class ApplicationContainer extends Component {
                     param1={"Test component"}
                     param2={"este es un componente de prueba"} >
                 </TestComponent> */}
-                <button onClick={this.unFunction}>Get Conversations</button>
+                <button onClick={this.unFunction}>refresh</button>
                 {this.state.data != null?
                 this.state.data.map(
 
