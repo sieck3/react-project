@@ -1,3 +1,4 @@
-/* .test-component{   
-    color: "pink";
-} */
+.test-component {
+    display: flex;
+    background-color: pink;
+}
