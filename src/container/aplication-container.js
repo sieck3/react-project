@@ -1,19 +1,10 @@
 import React, { Component } from 'react'
 import '/src/css/test-component.css'
-import TestComponent from '/src/component/test-component'
 import { getDatabase, onValue, ref, set } from "firebase/database"
+import '/src/css/comment-component.css'
 
+//No quitar el provider
 const firebase = require("/src/services/config.js");
-
-const PAGES = [
-
-    {
-        link: "TestComponent"
-    }
-]
-
-
-
 
 class ApplicationContainer extends Component {
 
@@ -21,38 +12,54 @@ class ApplicationContainer extends Component {
         super(props)
         this.state = {
             page: 'TestComponent',
-            data:null
+            data: null,
+            diptongo: false,
+            textarea: "",
+            name:"Invitado"
         }
 
 
-        this.unFunction = this.unFunction.bind(this)
+        this.sendMsj = this.sendMsj.bind(this)
 
     }
 
-    unFunction(event) {
-        console.log("bind function, se puede enviar en un componente", this.state.page);
+    sendMsj() {
+
+        console.log("Send msj");
         const db = getDatabase();
-        const distanceRef = ref(db, 'msj/');
+        const distanceRef = ref(db, 'comentarios/'+(this.state.data.length));
+        set(distanceRef, {
+            nombre: this.state.name, 
+            comentario: this.state.textarea
 
-        onValue(distanceRef, (snapshot) => {
-            const data = snapshot.val();
-            this.setState({data:data});
         });
+    
 
-   
+    }
+
+    handleChange(event) {
+        this.setState({ textarea: event.target.value });
+        console.log("Send text");
+
+    }
+
+    handleChangeName(event) {
+        this.setState({ name: event.target.value });
+        console.log("Send name");
+
     }
 
 
     componentDidMount() {
 
         console.log("ApplicationContainer did mount");
-        console.log("bind function, se puede enviar en un componente", this.state.page);
         const db = getDatabase();
-        const distanceRef = ref(db, 'msj/');
+        const distanceRef = ref(db, 'comentarios/');
 
         onValue(distanceRef, (snapshot) => {
             const data = snapshot.val();
-            this.setState({data:data});
+            this.setState({ data: data });
+
         });
 
     }
@@ -62,21 +69,32 @@ class ApplicationContainer extends Component {
     render() {
         return (
             <div className='app-container'>
-                <h1>App Container</h1>
-                {/* <TestComponent
-                    param1={"Test component"}
-                    param2={"este es un componente de prueba"} >
-                </TestComponent> */}
-                <button onClick={this.unFunction}>refresh</button>
-                {this.state.data != null?
-                this.state.data.map(
+                <div className='comments-container'>
 
-                    (element)=>(<p>{element}</p>)
-        
-                ):""}
+                    {this.state.data != null ?
+                        this.state.data.map(
+                            (element, index) => (
 
-                
+                                <div className={index % 2 ? 'comment-component' : 'comment-component-b'} key={index}>
+                                    <label>{element.nombre + ": "}</label>
+                                    <p>{element.comentario}</p>
+                                </div>)
+                        ) : ""
+                    }
 
+                </div>
+                <div className='form-send-msj' >
+                    <label>Escribe un mensaje: </label>
+                    <input type="text" minLength="5" onChange={()=>{
+                        this.handleChangeName(event)
+                    }}/>
+                    <div>
+                        <textarea rows={4} onChange={() => {
+                            this.handleChange(event)
+                        }}></textarea>
+                        <button onClick={this.sendMsj}>enviar</button>
+                    </div>
+                </div>
             </div>
         )
     }

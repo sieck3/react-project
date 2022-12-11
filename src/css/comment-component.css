@@ -1,0 +1,147 @@
+.comments-container {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: solid 1px red;
+    scroll-margin: 20px;
+}
+
+
+.comment-component {
+
+    width: 40%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+
+}
+
+.comment-component-b {
+
+    width: 40%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+
+}
+
+.comment-component>label {
+    background-color: rgb(15, 184, 184);
+    padding: 5px;
+    max-width: 20%;
+    box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+
+}
+
+.comment-component-b>label {
+    background-color: rgb(235, 119, 104);
+    padding: 5px;
+    max-width: 20%;
+    box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+
+}
+
+
+.comment-component>p {
+    background-color: rgb(188, 240, 240);
+    margin: 0;
+    margin-top: 5px;
+    padding: 10px;
+    box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
+    min-height: 35px;
+    border-radius: 5px;
+
+}
+
+.comment-component-b>p {
+    background-color: rgb(240, 190, 157);
+    margin: 0;
+    margin-top: 5px;
+    padding: 10px;
+    box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
+    min-height: 35px;
+    border-radius: 5px;
+
+}
+
+.form-send-msj {
+
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    bottom: 0;
+    padding: 5px;
+    background-color: #cae8ca;
+    border-radius: 5px;
+    width: 40%;
+    margin: auto;
+
+}
+
+
+.form-send-msj>label {
+
+    color: rgb(100, 52, 112);
+    font-style: italic;
+    font-weight: 900;
+}
+
+.form-send-msj>div>textarea {
+
+    resize: none;
+
+}
+
+.form-send-msj>div {
+    display: flex;
+    width: 100%;
+}
+
+.form-send-msj>div>textarea {
+    flex: 3;
+}
+
+.form-send-msj>div>button {
+    flex: 1;
+}
+
+.form-send-msj > input {
+
+    width: 50%;
+}
+
+@media only screen and (max-width: 639px) {
+
+
+    .comments-container {
+        border-bottom: solid 1px blue;
+
+
+    }
+
+    .form-send-msj {
+        width: 95%;
+
+    }
+
+    .comment-component {
+        width: 94%;
+
+    }
+
+    .comment-component-b {
+        width: 94%;
+
+    }
+}
