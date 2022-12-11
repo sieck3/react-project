@@ -15,7 +15,7 @@ class ApplicationContainer extends Component {
             data: null,
             diptongo: false,
             textarea: "",
-            name:"Invitado"
+            name: "Invitado"
         }
 
 
@@ -27,13 +27,14 @@ class ApplicationContainer extends Component {
 
         console.log("Send msj");
         const db = getDatabase();
-        const distanceRef = ref(db, 'comentarios/'+(this.state.data.length));
-        set(distanceRef, {
-            nombre: this.state.name, 
-            comentario: this.state.textarea
+        const distanceRef = ref(db, 'comentarios/' + (this.state.data.length));
+        if (this.state.textarea != "") {
+            set(distanceRef, {
+                nombre: this.state.name,
+                comentario: this.state.textarea
 
-        });
-    
+            });
+        }
 
     }
 
@@ -68,7 +69,7 @@ class ApplicationContainer extends Component {
 
     render() {
         return (
-            <div className='app-container'>
+            <for className='app-container'>
                 <div className='comments-container'>
 
                     {this.state.data != null ?
@@ -85,17 +86,19 @@ class ApplicationContainer extends Component {
                 </div>
                 <div className='form-send-msj' >
                     <label>Escribe un mensaje: </label>
-                    <input type="text" minLength="5" onChange={()=>{
-                        this.handleChangeName(event)
-                    }}/>
+                    <div className='form-btn-container'>
+                        <input type="text" minLength="5" onChange={() => {
+                            this.handleChangeName(event)
+                        }} />
+                        <button onClick={this.sendMsj}>enviar</button>
+                    </div>
                     <div>
                         <textarea rows={4} onChange={() => {
                             this.handleChange(event)
                         }}></textarea>
-                        <button onClick={this.sendMsj}>enviar</button>
                     </div>
                 </div>
-            </div>
+            </for>
         )
     }
 }
