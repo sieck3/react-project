@@ -15,7 +15,8 @@ class ApplicationContainer extends Component {
             data: null,
             diptongo: false,
             textarea: "",
-            name: "Invitado"
+            name: "Invitado",
+            time: 0
         }
 
 
@@ -25,35 +26,38 @@ class ApplicationContainer extends Component {
 
     sendMsj() {
 
-        console.log("Send msj");
-        const db = getDatabase();
-        const distanceRef = ref(db, 'comentarios/' + (this.state.data.length));
-        if (this.state.textarea != "") {
-            set(distanceRef, {
-                nombre: this.state.name,
-                comentario: this.state.textarea
+        let today = new Date();
+        if (today.getMinutes() > (this.state.time)) {
+            const db = getDatabase();
+            const distanceRef = ref(db, 'comentarios/' + (this.state.data.length));
+            if (this.state.textarea != "") {
+                set(distanceRef, {
+                    nombre: this.state.name,
+                    comentario: this.state.textarea
 
-            });
+                });
+            }
+
+            let now = today.getMinutes();
+            console.log("date", now);
+            this.setState({ time: now });
         }
 
     }
 
     handleChange(event) {
         this.setState({ textarea: event.target.value });
-        console.log("Send text");
 
     }
 
     handleChangeName(event) {
         this.setState({ name: event.target.value });
-        console.log("Send name");
 
     }
 
 
     componentDidMount() {
 
-        console.log("ApplicationContainer did mount");
         const db = getDatabase();
         const distanceRef = ref(db, 'comentarios/');
 
@@ -63,13 +67,15 @@ class ApplicationContainer extends Component {
 
         });
 
+        let time = new Date();
+        this.setState({ time: time.getMinutes() });
     }
 
 
 
     render() {
         return (
-            <for className='app-container'>
+            <div className='app-container'>
                 <div className='comments-container'>
 
                     {this.state.data != null ?
@@ -98,7 +104,7 @@ class ApplicationContainer extends Component {
                         }}></textarea>
                     </div>
                 </div>
-            </for>
+            </div>
         )
     }
 }
