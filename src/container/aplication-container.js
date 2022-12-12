@@ -16,7 +16,8 @@ class ApplicationContainer extends Component {
             diptongo: false,
             textarea: "",
             name: "Invitado",
-            time: 0
+            time: 0,
+            msj: "h",
         }
 
 
@@ -41,6 +42,7 @@ class ApplicationContainer extends Component {
             let now = today.getMinutes();
             console.log("date", now);
             this.setState({ time: now });
+            this.setState({msj:""});
         }
 
     }
@@ -54,6 +56,12 @@ class ApplicationContainer extends Component {
         this.setState({ name: event.target.value });
 
     }
+
+    handleChangeComment(event) {
+
+        this.setState({ msj: event.target.value });
+    }
+
 
 
     componentDidMount() {
@@ -101,7 +109,8 @@ class ApplicationContainer extends Component {
                     <div>
                         <textarea rows={4} onChange={() => {
                             this.handleChange(event)
-                        }}></textarea>
+                           this.handleChangeComment(event)
+                        }} value={this.state.msj}></textarea>
                     </div>
                 </div>
             </div>
