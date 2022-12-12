@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import '/src/css/test-component.css'
 import { getDatabase, onValue, ref, set } from "firebase/database"
 import '/src/css/comment-component.css'
 
@@ -17,11 +16,13 @@ class ApplicationContainer extends Component {
             textarea: "",
             name: "Invitado",
             time: 0,
-            msj: "h",
-        }
+            msj: "",
+            darkMode: false,
+        };
 
 
-        this.sendMsj = this.sendMsj.bind(this)
+        this.sendMsj = this.sendMsj.bind(this);
+        this.changeDarkMode = this.changeDarkMode.bind(this);
 
     }
 
@@ -42,7 +43,7 @@ class ApplicationContainer extends Component {
             let now = today.getMinutes();
             console.log("date", now);
             this.setState({ time: now });
-            this.setState({msj:""});
+            this.setState({ msj: "" });
         }
 
     }
@@ -60,6 +61,13 @@ class ApplicationContainer extends Component {
     handleChangeComment(event) {
 
         this.setState({ msj: event.target.value });
+    }
+
+    changeDarkMode() {
+
+        this.setState({ darkMode: !this.state.darkMode })
+
+        console.log("Darkmode :", this.state.darkMode);
     }
 
 
@@ -83,9 +91,11 @@ class ApplicationContainer extends Component {
 
     render() {
         return (
-            <div className='app-container'>
+            <div className={this.state.darkMode ? "dark-mode" : "app-container"}>
+                <div className="btn-dark-mode">
+                    <button onClick={() => {this.changeDarkMode()}} >{this.state.darkMode? "o":"|"}</button>
+                </div>
                 <div className='comments-container'>
-
                     {this.state.data != null ?
                         this.state.data.map(
                             (element, index) => (
@@ -109,7 +119,7 @@ class ApplicationContainer extends Component {
                     <div>
                         <textarea rows={4} onChange={() => {
                             this.handleChange(event)
-                           this.handleChangeComment(event)
+                            this.handleChangeComment(event)
                         }} value={this.state.msj}></textarea>
                     </div>
                 </div>
