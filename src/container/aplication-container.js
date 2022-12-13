@@ -10,14 +10,14 @@ class ApplicationContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            page: 'TestComponent',
             data: null,
             diptongo: false,
             textarea: "",
             name: "Invitado",
-            time: 0,
             msj: "",
             darkMode: false,
+            seconds: 0,
+            timeLimit: 5,
         };
 
 
@@ -26,10 +26,21 @@ class ApplicationContainer extends Component {
 
     }
 
+    tick() {
+        this.setState(state => ({
+            seconds: state.seconds + 1
+        }));
+    }
+
+    goToBottom() {
+
+        window.scrollBy(0, document.getElementById("app-container").clientHeight + 100);
+
+    }
     sendMsj() {
 
-        let today = new Date();
-        if (today.getMinutes() > (this.state.time)) {
+
+        if (this.state.seconds > this.state.timeLimit) {
             const db = getDatabase();
             const distanceRef = ref(db, 'comentarios/' + (this.state.data.length));
             if (this.state.textarea != "") {
@@ -38,14 +49,17 @@ class ApplicationContainer extends Component {
                     comentario: this.state.textarea
 
                 });
+            }else{
+
+                alert("Escribe algo...");
+
             }
-
-            let now = today.getMinutes();
-            console.log("date", now);
-            this.setState({ time: now });
             this.setState({ msj: "" });
+            this.setState({ seconds: 0 });
+            this.goToBottom();
+        } else {
+            alert("Tienes que esperar " + (this.state.timeLimit - this.state.seconds) + " segundos para mandar otro mensaje!");
         }
-
     }
 
     handleChange(event) {
@@ -67,7 +81,6 @@ class ApplicationContainer extends Component {
 
         this.setState({ darkMode: !this.state.darkMode })
 
-        console.log("Darkmode :", this.state.darkMode);
     }
 
 
@@ -81,20 +94,21 @@ class ApplicationContainer extends Component {
             const data = snapshot.val();
             this.setState({ data: data });
 
-        });
+        })
 
-        let time = new Date();
-        this.setState({ time: time.getMinutes() });
+        this.interval = setInterval(() => this.tick(), 1000);
+
     }
-
 
 
     render() {
         return (
-            <div className={this.state.darkMode ? "dark-mode" : "app-container"}>
+            <div id="app-container" className={this.state.darkMode ? "dark-mode" : "app-container"}>
                 <div className="btn-dark-mode">
-                    <button onClick={() => {this.changeDarkMode()}} >{this.state.darkMode? "o":"|"}</button>
+                    <button onClick={() => { this.changeDarkMode() }} >{this.state.darkMode ? "o" : "|"}</button>
+                    <button onClick={() => { this.goToBottom() }}>V</button>
                 </div>
+
                 <div className='comments-container'>
                     {this.state.data != null ?
                         this.state.data.map(
@@ -123,7 +137,7 @@ class ApplicationContainer extends Component {
                         }} value={this.state.msj}></textarea>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }
