@@ -1,16 +1,16 @@
 import { useState } from "react";
-import ApplicationContainer from '../src/container/aplication-container'
-
-// import logo from "./react.svg";
+import AplicationContainer from './container/aplication-container.js'
 import "./App.css";
+
 // import "./App.scss";
+// import logo from "./react.svg";
 
 function App() {
 
   return (
 
     <div>
-      <ApplicationContainer />
+      <AplicationContainer />
     </div>
   );
 }

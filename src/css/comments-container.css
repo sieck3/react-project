@@ -1,15 +1,18 @@
 .comments-container {
     margin-bottom: 30px;
     padding-bottom: 30px;
-    border-bottom: solid 1px red;
+    /* border-bottom: solid 1px red; */
     scroll-margin: 20px;
+    height: 70vh;
 }
 
 
 .comment-component {
 
-    width: 40%;
-    margin: auto;
+    width: 400px;
+    margin-left: 2%;
+
+    /* margin: auto; */
     display: flex;
     flex-direction: column;
     margin-top: 30px;
@@ -18,8 +21,9 @@
 
 .comment-component-b {
 
-    width: 40%;
-    margin: auto;
+    width: 400px;
+    margin-left: 2%;
+    /* margin: auto; */
     display: flex;
     flex-direction: column;
     margin-top: 30px;
@@ -81,11 +85,11 @@
     flex-direction: column;
     position: sticky;
     bottom: 0;
-    padding: 5px;
+    padding: 10px;
     background-color: #cae8ca;
     border-radius: 5px;
-    width: 40%;
-    margin: auto;
+    width: 400px;
+    margin-left: 2%;
 
 }
 
@@ -202,9 +206,9 @@ DARK-MODE
     display: flex;
     flex-direction: row;
     opacity: 0.4;
-    
+    margin-left: 80%;
 
-} 
+}
 
 .btn-dark-mode button {
     border-radius: 100px;
@@ -216,7 +220,7 @@ DARK-MODE
 
 
     .comments-container {
-        border-bottom: solid 1px blue;
+        /* border-bottom: solid 1px blue; */
 
 
     }
@@ -227,22 +231,27 @@ DARK-MODE
     }
 
     .comment-component {
-        width: 94%;
+        width: 100%;
 
     }
 
     .comment-component-b {
-        width: 94%;
+        width: 100%;
+
+    }
+
+    .comment-component-b>label {
+        width: 100%;
 
     }
 
 
 
-    .btn-dark-mode button{
+    .btn-dark-mode button {
 
         /* margin-top: 5px;
         margin-left: 0px; */
-        
-    
+
+
     }
 }
