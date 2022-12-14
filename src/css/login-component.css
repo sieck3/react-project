@@ -1,0 +1,40 @@
+.login-component {
+
+    display: flex;
+    flex-direction: column;
+    border: solid 1px black;
+    width: 500px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 5%;
+}
+
+.login-component>h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.login-component>div {
+
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    padding: 2px;
+    margin-top: 5px;
+}
+
+.login-component>div>button {
+
+    margin: 0 auto;
+    width: 40%;
+    padding: 2px;
+    margin-top: 10px;
+    border-radius: 10px;
+
+}
+
+
+.off{
+    display: none;
+}

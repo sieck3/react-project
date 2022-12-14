@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { _ } from 'core-js';
 import CommentsContainer from './comments-container.js'
+import LoginContainer from './login-container.js'
+
 class AplicationContainer extends Component {
 
     constructor(props) {
@@ -15,7 +17,8 @@ class AplicationContainer extends Component {
     render() {
         return (
             <div>
-                <CommentsContainer />
+                <LoginContainer/>
+                {/* <CommentsContainer /> */}
             </div >
         )
     }
