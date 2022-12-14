@@ -17,7 +17,7 @@ class ApplicationContainer extends Component {
             msj: "",
             darkMode: false,
             seconds: 0,
-            timeLimit: 5,
+            timeLimit: 35,
         };
 
 
@@ -49,7 +49,7 @@ class ApplicationContainer extends Component {
                     comentario: this.state.textarea
 
                 });
-            }else{
+            } else {
 
                 alert("Escribe algo...");
 
