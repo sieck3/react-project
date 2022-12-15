@@ -18,7 +18,7 @@ class CommentsContainer extends Component {
             textarea: "",
             darkMode: false,
             seconds: 0,
-            timeLimit: 30,
+            timeLimit: 30
         };
 
 
@@ -40,6 +40,7 @@ class CommentsContainer extends Component {
 
         this.interval = setInterval(() => this.tick(), 1000);
 
+
     }
 
     tick() {
@@ -54,16 +55,16 @@ class CommentsContainer extends Component {
 
     }
     sendMsj() {
-
-
         if (this.state.seconds > this.state.timeLimit) {
             const db = getDatabase();
             const distanceRef = ref(db, 'comentarios/' + (this.state.data.length));
             if (this.state.textarea != "") {
+
+                let date = this.createDate();
                 set(distanceRef, {
                     nombre: this.state.name,
-                    comentario: this.state.textarea
-
+                    comentario: this.state.textarea,
+                    fecha: date
                 });
             } else {
 
@@ -76,6 +77,12 @@ class CommentsContainer extends Component {
         } else {
             alert("Tienes que esperar " + (this.state.timeLimit - this.state.seconds) + " para mandar otro mensaje!");
         }
+    }
+
+    createDate() {
+        let x = new Date();
+        let date = (x.getHours() + ":" + ((x.getMinutes() < 10 ? '0' : '') + x.getMinutes()) + " " + x.getDay() + "/" + x.getMonth() + "/" + x.getFullYear());
+        return date;
     }
 
     handleChange(event) {
@@ -113,7 +120,10 @@ class CommentsContainer extends Component {
                             (element, index) => (
 
                                 <div className={index % 2 ? 'comment-component' : 'comment-component-b'} key={index}>
-                                    <label>{element.nombre + ": "}</label>
+                                    <div>
+                                        <label>{element.nombre + ": "}</label>
+                                        <label>{element.fecha}</label>
+                                    </div>
                                     <p>{element.comentario}</p>
                                 </div>)
                         ) : ""
@@ -121,8 +131,12 @@ class CommentsContainer extends Component {
 
                 </div>
                 <div className='form-send-msj' >
-                    <label>Escribe un mensaje: </label>
-                  
+                    <div>
+
+                        <label>Escribe un mensaje: </label>
+
+                    </div>
+
                     <div>
                         <textarea rows={4} onChange={() => {
                             this.handleChange(event)

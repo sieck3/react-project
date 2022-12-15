@@ -17,8 +17,8 @@ class AplicationContainer extends Component {
     render() {
         return (
             <div>
-                <LoginContainer/>
-                {/* <CommentsContainer /> */}
+                {/* <LoginContainer/> */}
+                <CommentsContainer />
             </div >
         )
     }

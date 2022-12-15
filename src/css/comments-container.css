@@ -3,7 +3,7 @@
     padding-bottom: 30px;
     /* border-bottom: solid 1px red; */
     scroll-margin: 20px;
-    height: 70vh;
+    /* height: 70vh; */
 }
 
 
@@ -30,10 +30,24 @@
 
 }
 
-.comment-component>label {
+.comment-component>div {
+
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+
+.comment-component-b>div {
+
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.comment-component>div>label {
     background-color: rgb(15, 184, 184);
     padding: 5px;
-    max-width: 20%;
     box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
@@ -41,10 +55,9 @@
 
 }
 
-.comment-component-b>label {
+.comment-component-b>div>label {
     background-color: rgb(235, 119, 104);
     padding: 5px;
-    max-width: 20%;
     box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 8px 9px 15px -6px rgba(0, 0, 0, 0.75);
