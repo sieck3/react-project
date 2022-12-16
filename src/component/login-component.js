@@ -1,17 +1,21 @@
 import React from "react";
 import '/src/css/login-component.css'
 
-const LoginComponent = ({ page,register, login }) => (
+const LoginComponent = ({ page, register, login, handleChangeName, handleChangePwd }) => (
 
-    <div className={page!="login"?"off":"login-component"}>
+    <div className={page != "login" ? "off" : "login-component"}>
         <h2>Login</h2>
         <div>
             <label>Username</label>
-            <input />
+            <input onChange={() => {
+                handleChangeName(event);
+            }} />
         </div>
         <div>
             <label>Password</label>
-            <input />
+            <input type="password" onChange={() => {
+                handleChangePwd(event);
+            }} />
         </div>
         <div>
             <button onClick={login}>login</button>
