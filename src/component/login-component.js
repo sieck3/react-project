@@ -17,7 +17,7 @@ const LoginComponent = ({ page, register, login, handleChangeName, handleChangeP
                 handleChangePwd(event);
             }} />
         </div>
-        <div>
+        <div className="btn-container">
             <button onClick={login}>login</button>
             <button onClick={register}>Register</button>
         </div>

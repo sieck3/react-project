@@ -15,15 +15,15 @@ const RegisterComponent = ({ page, register, login, handleChangeName, handleChan
             <label>Password</label>
             <input id="psw" type="password" onChange={() => {
                 handleChangePwd(event);
-            }}/>
-        </div>
-        <div>
-            <label>Repeat Password</label>
-            <input id="pswR"  type="password" onChange={() => {
-                handleChangePwdRepeat(event);
             }} />
         </div>
         <div>
+            <label>R Password</label>
+            <input id="pswR" type="password" onChange={() => {
+                handleChangePwdRepeat(event);
+            }} />
+        </div>
+        <div className="btn-container">
             <button onClick={register}>Register</button>
             <button onClick={login}>login</button>
         </div>

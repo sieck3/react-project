@@ -2,11 +2,11 @@
 
     display: flex;
     flex-direction: column;
-    border: solid 1px black;
+    border: solid 1px rgb(191, 189, 189);
     width: 500px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     padding: 10px;
-    margin-left: 5%;
+    margin: auto;
 }
 
 .login-component>h2 {
@@ -30,11 +30,43 @@
     width: 40%;
     padding: 2px;
     margin-top: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
+    background-color: aqua;
+    border: none;
+
 
 }
 
+.login-component>div>button:active {
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    /* Lowering the shadow */
+}
 
-.off{
+.btn-container {
+    height: 50px;
+}
+
+
+.off {
     display: none;
+}
+
+@media only screen and (max-width: 639px) {
+    .login-component>div {
+        /* background-color: rgb(127, 121, 133); */
+        width: 100%;
+    }
+
+    .btn-container{
+        display: flex;
+        width: 100%;
+    }
+
+    .btn-container>button{
+        height: 40px;
+    }
+    
+
 }
