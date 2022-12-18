@@ -16,6 +16,20 @@ class AplicationContainer extends Component {
 
     componentDidMount() {
         console.log("App container");
+        let getCookieUserName = this.getCookie("name");
+        let getCookieUserPsw = this.getCookie("psw");
+        console.log("name", getCookieUserName);
+        console.log("psw", getCookieUserPsw);
+
+        if (getCookieUserName != "" && getCookieUserPsw != "") {
+
+            this.setState({ user: { nombre: getCookieUserName, password: getCookieUserPsw } });
+
+        } else {
+
+            console.log("Yes");
+
+        }
     }
 
     login(x) {
@@ -23,10 +37,26 @@ class AplicationContainer extends Component {
         this.setState({ user: x });
     }
 
+    getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
     render() {
         return (
             <div>
-                {this.state.user != null ? <CommentsContainer /> : <LoginContainer login={this.login} />}
+                {this.state.user != null ? <CommentsContainer login={this.login} /> : <LoginContainer login={this.login} />}
 
             </div >
         )

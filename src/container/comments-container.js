@@ -54,6 +54,7 @@ class CommentsContainer extends Component {
         window.scrollBy(0, document.getElementById("app-container").clientHeight + 100);
 
     }
+    
     sendMsj() {
         if (this.state.seconds > this.state.timeLimit) {
             const db = getDatabase();
@@ -106,12 +107,27 @@ class CommentsContainer extends Component {
 
     }
 
+    logOut() {
+        this.props.login(null)
+        this.setCookie("psw","",0);
+        this.setCookie("name","",0);
+
+    }
+
+    setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
     render() {
         return (
             <div id="app-container" className={this.state.darkMode ? "dark-mode" : "app-container"}>
                 <div className="btn-dark-mode">
                     <button onClick={() => { this.changeDarkMode() }} >{this.state.darkMode ? "o" : "|"}</button>
                     <button onClick={() => { this.goToBottom() }}>V</button>
+                    <button onClick={() => { this.logOut() }}>Exit</button>
                 </div>
 
                 <div className='comments-container'>

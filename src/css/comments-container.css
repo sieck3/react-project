@@ -212,7 +212,7 @@ DARK-MODE
 
 .btn-dark-mode {
 
-    width: 80px;
+    /* width: 80px; */
     position: sticky;
     top: 0;
     font-size: .8rem;
