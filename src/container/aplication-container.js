@@ -56,7 +56,7 @@ class AplicationContainer extends Component {
     render() {
         return (
             <div>
-                {this.state.user != null ? <CommentsContainer login={this.login} /> : <LoginContainer login={this.login} />}
+                {this.state.user != null ? <CommentsContainer login={this.login} user={this.state.user} /> : <LoginContainer login={this.login} />}
 
             </div >
         )

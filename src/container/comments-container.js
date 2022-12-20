@@ -54,7 +54,7 @@ class CommentsContainer extends Component {
         window.scrollBy(0, document.getElementById("app-container").clientHeight + 100);
 
     }
-    
+
     sendMsj() {
         if (this.state.seconds > this.state.timeLimit) {
             const db = getDatabase();
@@ -63,7 +63,7 @@ class CommentsContainer extends Component {
 
                 let date = this.createDate();
                 set(distanceRef, {
-                    nombre: this.state.name,
+                    nombre: this.props.user.nombre,
                     comentario: this.state.textarea,
                     fecha: date
                 });
@@ -109,8 +109,8 @@ class CommentsContainer extends Component {
 
     logOut() {
         this.props.login(null)
-        this.setCookie("psw","",0);
-        this.setCookie("name","",0);
+        this.setCookie("psw", "", 0);
+        this.setCookie("name", "", 0);
 
     }
 
@@ -160,9 +160,9 @@ class CommentsContainer extends Component {
                         }} value={this.state.msj}></textarea>
                     </div>
                     <div className='form-btn-container'>
-                        <input type="text" minLength="5" placeholder="Name" onChange={() => {
+                        {/* <input type="text" minLength="5" placeholder="Name" onChange={() => {
                             this.handleChangeName(event)
-                        }} />
+                        }} /> */}
                         <button onClick={this.sendMsj}>enviar</button>
                     </div>
                 </div>
